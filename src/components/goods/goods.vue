@@ -34,10 +34,12 @@
         </li>
       </ul>
     </div>
+    <shopcart></shopcart>
   </div>
 </template>
 <script>
 import BScroll from 'better-scroll'
+import shopcart from '../shopcart/shopcart'
 const ERR_OK = 0
 export default {
   name: 'goods',
@@ -48,6 +50,9 @@ export default {
       scrollY: 0,
       selectedFood: {}
     }
+  },
+  components: {
+    shopcart
   },
   computed: {
     currentIndex () {
