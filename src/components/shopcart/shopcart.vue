@@ -7,9 +7,9 @@
             <div class="logo">
               <i class="icon-shopping_cart"></i>
             </div>
-            <div class="num">1</div>
+            <div class="num">{{totalCount}}</div>
           </div>
-          <div class="price">1</div>
+          <div class="price">￥{{totalPrice}}</div>
           <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
         </div>
         <div class="content-right">
@@ -22,6 +22,12 @@
 <script>
 export default {
   props: {
+    selectFoods: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
     deliveryPrice: {
       type:Number,
       default: 0
@@ -29,6 +35,22 @@ export default {
     minPrice: {
       type: Number,
       default: 0
+    }
+  },
+  computed: {
+    totalPrice () {
+      let total = 0
+      this.selectFoods.forEach((food) => {
+        total += food.price*food.count
+      })
+      return total
+    },
+    totalCount () {
+      let count = 0
+      this.selectFoods.forEach((food) => {
+        count += food.count
+      })
+      return count
     }
   }
 }
